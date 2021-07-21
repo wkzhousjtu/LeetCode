@@ -4,7 +4,7 @@
 #include <queue>
 template<class T>
 struct BinNode {
-	//¶ş²æÊ÷½ÚµãÄ£°åÀà
+	//äºŒå‰æ ‘èŠ‚ç‚¹æ¨¡æ¿ç±»
 	T val;
 	BinNode* left;
 	BinNode* right;
@@ -16,7 +16,7 @@ struct BinNode {
 
 template<class T>
 void preOrder(BinNode<T>* root ,vector<BinNode<T>>& v) {
-	//¶ş²æÊ÷µÄÇ°Ğò±éÀú£¬µİ¹é°æ
+	//äºŒå‰æ ‘çš„å‰åºéå†ï¼Œé€’å½’ç‰ˆ
 	if (!root) return;
 	visit(root->val); //v.push_back(root);
 	preOrder(root->left, v);
@@ -25,7 +25,7 @@ void preOrder(BinNode<T>* root ,vector<BinNode<T>>& v) {
 
 template <class T>
 vector<T> preOrder(BinNode<T>* root) {
-	//¶ş²æÊ÷µÄÇ°Ğò±éÀú£¬µü´ú°æ1£¬
+	//äºŒå‰æ ‘çš„å‰åºéå†ï¼Œè¿­ä»£ç‰ˆ1ï¼Œ
 	std::stack<BinNode<T>*> s;
 	std::vector<T> v;
 	if (root == nullptr) return v;	
@@ -33,7 +33,7 @@ vector<T> preOrder(BinNode<T>* root) {
 	while (!s.empty()) {
 		BinNode<T>* x = s.top();
 		v.push_back(x->val);
-		std::cout <<'Ç°Ğò±éÀú'<< ' ';
+		std::cout <<'å‰åºéå†'<< ' ';
 		s.pop();
 		if (x->right)s.push(x->right);
 		if (x->left)s.push(x->left);
@@ -42,7 +42,7 @@ vector<T> preOrder(BinNode<T>* root) {
 }
 template <class T>
 vector<T> preorderTraversal(BinNode<T>* root) {
-	////¶ş²æÊ÷µÄÇ°Ğò±éÀú£¬µü´ú°æ1,Î¢µ÷
+	////äºŒå‰æ ‘çš„å‰åºéå†ï¼Œè¿­ä»£ç‰ˆ1,å¾®è°ƒ
 	vector<int> res;
 	stack<BinNode<T>*> s;
 	BinNode<T>* x = root;
@@ -61,19 +61,19 @@ vector<T> preorderTraversal(BinNode<T>* root) {
 
 template<class T>
 vector<T> preOrder2(BinNode<T>* root) {
-	//¶ş²æÊ÷µÄÇ°Ğò±éÀú£¬µü´ú°æ2
+	//äºŒå‰æ ‘çš„å‰åºéå†ï¼Œè¿­ä»£ç‰ˆ2
 	std::stack<BinNode<T>*> s;
 	std::vector<T> v;
 	BinNode* x = root;
 	while(true){  //
-		while (x) {  // Ğ¡Ñ­»·ÑØ×óÁ´ÏòÏÂ£¬·ÃÎÊÖĞ¼äµã£¬ÏòÕ»ÖĞÑ¹ÈëÓÒ×ÓÊ÷½Úµã
+		while (x) {  // å°å¾ªç¯æ²¿å·¦é“¾å‘ä¸‹ï¼Œè®¿é—®ä¸­é—´ç‚¹ï¼Œå‘æ ˆä¸­å‹å…¥å³å­æ ‘èŠ‚ç‚¹
 			v.push_back(x->val);
-			std::cout << "Ç°Ğò±éÀú2" << ' ';
+			std::cout << "å‰åºéå†2" << ' ';
 			if (x->right)s.push(x->right);
 			x = x->left;
 		}
 		if (s.empty()) break;
-		x = s.top();//´óÑ­»·½«Õ»ÖĞµÄ½ÚµãÈ¡³ö£¬ÔÙ´Î½øÈëĞ¡Ñ­»·£¬
+		x = s.top();//å¤§å¾ªç¯å°†æ ˆä¸­çš„èŠ‚ç‚¹å–å‡ºï¼Œå†æ¬¡è¿›å…¥å°å¾ªç¯ï¼Œ
 		s.pop();
 	}
 	return v;
@@ -81,20 +81,20 @@ vector<T> preOrder2(BinNode<T>* root) {
 
 template<class T>
 vector<T> midOrder(BinNode<T>* root) {
-	//¶ş²æÊ÷µÄÖĞĞò±éÀú£¬µü´ú°æ
+	//äºŒå‰æ ‘çš„ä¸­åºéå†ï¼Œè¿­ä»£ç‰ˆ
 	std::stack<BinNode*> s;
 	std::vector<T> v;
 	BinNode<T>* x = root;
-	while (true) { //true¿É¸ÄÎª x!=nullptr || !s.empty() ÉÏÒ»½Úµã´æÔÚÓÒ×ÓÊ÷»òÕ»²»Îª¿Õ
-		while (x) {  //Ğ¡Ñ­»·ÑØ×óÁ´ÏòÏÂ£¬ÑØÍ¾½«×óº¢×ÓÑ¹ÈëÕ»£¬Ö±ÖÁÒ¶½Úµã£¬²»·ÃÎÊÖĞ¼ä½Úµã
+	while (true) { //trueå¯æ”¹ä¸º x!=nullptr || !s.empty() ä¸Šä¸€èŠ‚ç‚¹å­˜åœ¨å³å­æ ‘æˆ–æ ˆä¸ä¸ºç©º
+		while (x) {  //å°å¾ªç¯æ²¿å·¦é“¾å‘ä¸‹ï¼Œæ²¿é€”å°†å·¦å­©å­å‹å…¥æ ˆï¼Œç›´è‡³å¶èŠ‚ç‚¹ï¼Œä¸è®¿é—®ä¸­é—´èŠ‚ç‚¹
 			s.push(x);
 			x = x->left;
 		}
 		if (s.empty()) break;
-		x = s.top(); //´óÑ­»·pop³öÖĞ¼ä½Úµã£¬·ÃÎÊÖĞ¼ä½Úµã£¬½øÈëÓÒ×ÓÊ÷£¬Èç¹ûÃ»ÓĞÓÒ×ÓÊ÷£¬¼ÌĞøpopÉÏÒ»¼¶ÖĞ¼ä½Úµã
+		x = s.top(); //å¤§å¾ªç¯popå‡ºä¸­é—´èŠ‚ç‚¹ï¼Œè®¿é—®ä¸­é—´èŠ‚ç‚¹ï¼Œè¿›å…¥å³å­æ ‘ï¼Œå¦‚æœæ²¡æœ‰å³å­æ ‘ï¼Œç»§ç»­popä¸Šä¸€çº§ä¸­é—´èŠ‚ç‚¹
 		s.pop();
 		v.push_back(x->val);
-		std::cout << "ÖĞĞò±éÀú" << ' ';
+		std::cout << "ä¸­åºéå†" << ' ';
 		x = x->right;
 	}
 	return v;
@@ -102,26 +102,26 @@ vector<T> midOrder(BinNode<T>* root) {
 
 template<class T>
 vector<T> postOrder(BinNode<T>* root) {
-	//¶ş²æÊ÷µÄºóĞò±éÀú£¬µü´ú°æ
+	//äºŒå‰æ ‘çš„ååºéå†ï¼Œè¿­ä»£ç‰ˆ
 	std::stack<BinNode<T>*> s;
 	std::vector<T> v;
 	BinNode<T>* x = root;
 	BinNode<T>* prev = nullptr;
 	while (true) {
-		while (x) { //Ğ¡Ñ­»·ÑØ×óÁ´ÏòÏÂÖ±ÖÁÒ¶½Úµã£¬½«×óº¢×ÓÒÀ´ÎÑ¹ÈëÕ»
+		while (x) { //å°å¾ªç¯æ²¿å·¦é“¾å‘ä¸‹ç›´è‡³å¶èŠ‚ç‚¹ï¼Œå°†å·¦å­©å­ä¾æ¬¡å‹å…¥æ ˆ
 			s.push(x);
 			x = x->left;
 		}
 		if (s.empty()) break;
-		x = s.top();//´óÑ­»·pop³öÖĞ¼ä½Úµã£¬ÈôÓĞÓÒ×ÓÊ÷£¬±éÀúÓÒ×ÓÊ÷£»ÈôÎŞÓÒ×ÓÊ÷»òÓÒ×ÓÊ÷ÒÑ±»·ÃÎÊ£¬·ÃÎÊÖĞ¼ä½Úµã£¬pop³öÉÏÒ»ÖĞ¼ä½Úµã
+		x = s.top();//å¤§å¾ªç¯popå‡ºä¸­é—´èŠ‚ç‚¹ï¼Œè‹¥æœ‰å³å­æ ‘ï¼Œéå†å³å­æ ‘ï¼›è‹¥æ— å³å­æ ‘æˆ–å³å­æ ‘å·²è¢«è®¿é—®ï¼Œè®¿é—®ä¸­é—´èŠ‚ç‚¹ï¼Œpopå‡ºä¸Šä¸€ä¸­é—´èŠ‚ç‚¹
 		s.pop();
-		if (x->right && x != prev) { //´æÔÚÓÒ×ÓÊ÷ÇÒÓÒ×ÓÊ÷²»ÊÇ¸Õµ¯³öÕ»µÄ½Úµã£¬ÏÈ°ÑÖĞ¼ä½ÚµãÑ¹½øÕ»
+		if (x->right && x->right != prev) { //å­˜åœ¨å³å­æ ‘ä¸”å³å­æ ‘ä¸æ˜¯åˆšå¼¹å‡ºæ ˆçš„èŠ‚ç‚¹ï¼Œå…ˆæŠŠä¸­é—´èŠ‚ç‚¹å‹è¿›æ ˆ
 			s.push(x);
 			x = x->right;
 		}
-		else {  //²»´æÔÚÓÒ×ÓÊ÷»òÕßÓÒ×ÓÊ÷¸Õµ¯³öÕ»£¬ĞèÒª·ÃÎÊÖĞ¼ä½Úµã£¬ÏòÉÏpop
+		else {  //ä¸å­˜åœ¨å³å­æ ‘æˆ–è€…å³å­æ ‘åˆšå¼¹å‡ºæ ˆï¼Œéœ€è¦è®¿é—®ä¸­é—´èŠ‚ç‚¹ï¼Œå‘ä¸Špop
 			v.push_back(x->val);
-			std::cout << "ºóĞò±éÀú" << ' ';
+			std::cout << "ååºéå†" << ' ';
 			prev = x;
 			x = nullptr;
 		}
@@ -131,7 +131,7 @@ vector<T> postOrder(BinNode<T>* root) {
 
 template<class T>
 vector<T> levelOrder(BinNode<T>* root) {
-	//²ã´Î±éÀú£¬ÓÃ¶ÓÁĞÊµÏÖ£¬¹ã¶ÈÓÅÏÈËÑË÷¡£
+	//å±‚æ¬¡éå†ï¼Œç”¨é˜Ÿåˆ—å®ç°ï¼Œå¹¿åº¦ä¼˜å…ˆæœç´¢ã€‚
 	std::queue<BinNode<T>*> q;
 	std::vector<T> v;
 	BinNode<T>* x = root;
